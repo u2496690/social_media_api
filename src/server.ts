@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 
 // We will create an express app
 const app = express();
@@ -10,5 +10,5 @@ app.use(express.json());
 
 // Start the express server
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

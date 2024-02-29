@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,21 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWeatherData = void 0;
-const weatherService_js_1 = require("../services/weatherService.js");
-const express_validator_1 = require("express-validator");
+import { generateDublinWeatherData, generateLondonWeatherData, } from '../services/weatherService.js';
+import { validationResult } from 'express-validator';
 /**
-* Gets the weather data for a city
-* @param req the request object
-* @param res the response object
-*/
-const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+ * Gets the weather data for a city
+ * @param req the request object
+ * @param res the response object
+ */
+export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Check if there are any validation errors
-    const errors = (0, express_validator_1.validationResult)(req);
+    const errors = validationResult(req);
     // We will log them and send a 400 status code
     if (!errors.isEmpty()) {
-        console.error("Validation error", errors.mapped());
+        console.error('Validation error', errors.mapped());
         res.status(400).json({ errors: errors.array() });
         return;
     }
@@ -40,23 +37,22 @@ const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, function*
             rain: 1,
         };
         // We will use an if statement to check which city was passed in
-        if (city === "london") {
-            console.log((0, weatherService_js_1.generateLondonWeatherData)());
-            finalWeatherData = (0, weatherService_js_1.generateLondonWeatherData)();
+        if (city === 'london') {
+            console.log(generateLondonWeatherData());
+            finalWeatherData = generateLondonWeatherData();
         }
-        else if (city === "dublin") {
-            finalWeatherData = (0, weatherService_js_1.generateDublinWeatherData)();
+        else if (city === 'dublin') {
+            finalWeatherData = generateDublinWeatherData();
         }
         else {
             // If the city is not london or dublin, we will throw an error
-            res.status(404).send("City not found");
+            res.status(404).send('City not found');
         }
         // We will return the weather data as JSON
         res.status(200).json(finalWeatherData);
     }
     catch (error) {
         // If there is an error, we will log it and send a 500 status code
-        res.status(500).send("Error in fetching weather data");
+        res.status(500).send('Error in fetching weather data');
     }
 });
-exports.getWeatherData = getWeatherData;
