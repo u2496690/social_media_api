@@ -37,7 +37,6 @@ export const getWeatherData = async (req: Request, res: Response) => {
 
     // We will use an if statement to check which city was passed in
     if (city === 'london') {
-      console.log(generateLondonWeatherData());
       finalWeatherData = generateLondonWeatherData();
     } else if (city === 'dublin') {
       finalWeatherData = generateDublinWeatherData();
@@ -46,6 +45,7 @@ export const getWeatherData = async (req: Request, res: Response) => {
       res.status(404).send('City not found');
     }
     // We will return the weather data as JSON
+    console.log(finalWeatherData);
     res.status(200).json(finalWeatherData);
   } catch (error) {
     // If there is an error, we will log it and send a 500 status code

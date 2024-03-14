@@ -38,7 +38,6 @@ export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, fu
         };
         // We will use an if statement to check which city was passed in
         if (city === 'london') {
-            console.log(generateLondonWeatherData());
             finalWeatherData = generateLondonWeatherData();
         }
         else if (city === 'dublin') {
@@ -49,6 +48,7 @@ export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, fu
             res.status(404).send('City not found');
         }
         // We will return the weather data as JSON
+        console.log(finalWeatherData);
         res.status(200).json(finalWeatherData);
     }
     catch (error) {
