@@ -30,9 +30,9 @@ export const getUserData = async (req: Request, res: Response) => {
     let finalUserData: UserData;
     finalUserData = {
       username: "new user",
-      follower_count: 1,
-      following_count: 1,
-      posts_num: 1,
+      followercount: 1,
+      followingcount: 1,
+      postsnum: 1,
       pfp: "picture url"
     };
 

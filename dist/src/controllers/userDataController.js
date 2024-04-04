@@ -32,9 +32,9 @@ export const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, funct
         let finalUserData;
         finalUserData = {
             username: "new user",
-            follower_count: 1,
-            following_count: 1,
-            posts_num: 1,
+            followercount: 1,
+            followingcount: 1,
+            postsnum: 1,
             pfp: "picture url"
         };
         // We will use an if statement to check which city was passed in
