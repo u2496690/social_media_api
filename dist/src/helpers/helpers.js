@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import algosdk from 'algosdk';
 import { getClient, getAccount } from '../config/config.js';
-export const storeWeatherData = (data) => __awaiter(void 0, void 0, void 0, function* () {
+export const storeUserData = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = getClient();
         const account = getAccount();
@@ -27,6 +27,6 @@ export const storeWeatherData = (data) => __awaiter(void 0, void 0, void 0, func
         console.log('Transaction ID:', sendTxn.txId);
     }
     catch (error) {
-        console.error('Failed to store weather data:', error);
+        console.error('Failed to store user data:', error);
     }
 });

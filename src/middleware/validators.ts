@@ -1,6 +1,8 @@
 import { param } from 'express-validator';
 
-export const validateCityName = param('city')
+const usernames: string[] = ['userone', 'usertwo']
+
+export const validateUsername = param('username')
   .isString()
-  .isIn(['london', 'dublin'])
-  .withMessage('City name must be either london or dublin');
+  .isIn(usernames)
+  .withMessage('Invalid username');

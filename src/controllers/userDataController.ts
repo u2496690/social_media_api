@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import {
-  generateDublinWeatherData,
-  generateLondonWeatherData,
-} from '../services/weatherService.js';
+  generateUserOneData,
+  generateUserTwoData,
+} from '../services/userDataService.js';
 import { validationResult } from 'express-validator';
 
 /**
@@ -10,7 +10,7 @@ import { validationResult } from 'express-validator';
  * @param req the request object
  * @param res the response object
  */
-export const getWeatherData = async (req: Request, res: Response) => {
+export const getUserData = async (req: Request, res: Response) => {
   // Check if there are any validation errors
   const errors = validationResult(req);
   // We will log them and send a 400 status code
@@ -23,30 +23,31 @@ export const getWeatherData = async (req: Request, res: Response) => {
   // We will use a try catch block to catch any errors
   try {
     // Get the city param from the request
-    const { city } = req.params;
-    console.log(city);
+    const { username } = req.params;
+    console.log(username);
 
     // We will create a variable with a type of WeatherData
-    let finalWeatherData: WeatherData;
-    finalWeatherData = {
-      temperature: 1,
-      humidity: 1,
-      wind: 1,
-      rain: 1,
+    let finalUserData: UserData;
+    finalUserData = {
+      username: "new user",
+      follower_count: 1,
+      following_count: 1,
+      posts_num: 1,
+      pfp: "picture url"
     };
 
     // We will use an if statement to check which city was passed in
-    if (city === 'london') {
-      finalWeatherData = generateLondonWeatherData();
-    } else if (city === 'dublin') {
-      finalWeatherData = generateDublinWeatherData();
+    if (username === 'userone') {
+      finalUserData = generateUserOneData();
+    } else if (username === 'usertwo') {
+      finalUserData = generateUserTwoData();
     } else {
       // If the city is not london or dublin, we will throw an error
-      res.status(404).send('City not found');
+      res.status(404).send('User not found');
     }
     // We will return the weather data as JSON
-    console.log(finalWeatherData);
-    res.status(200).json(finalWeatherData);
+    console.log(finalUserData);
+    res.status(200).json(finalUserData);
   } catch (error) {
     // If there is an error, we will log it and send a 500 status code
     res.status(500).send('Error in fetching weather data');
