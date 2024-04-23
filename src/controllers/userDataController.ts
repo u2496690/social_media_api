@@ -6,7 +6,7 @@ import {
 import { validationResult } from 'express-validator';
 
 /**
- * Gets the weather data for a city
+ * Gets the user data for a user
  * @param req the request object
  * @param res the response object
  */
@@ -22,11 +22,11 @@ export const getUserData = async (req: Request, res: Response) => {
 
   // We will use a try catch block to catch any errors
   try {
-    // Get the city param from the request
+    // Get the username param from the request
     const { username } = req.params;
     console.log(username);
 
-    // We will create a variable with a type of WeatherData
+    // We will create a variable with a type of UserData
     let finalUserData: UserData;
     finalUserData = {
       username: "new user",
@@ -36,20 +36,20 @@ export const getUserData = async (req: Request, res: Response) => {
       pfp: "picture url"
     };
 
-    // We will use an if statement to check which city was passed in
+    // We will use an if statement to check which user was passed in
     if (username === 'userone') {
       finalUserData = generateUserOneData();
     } else if (username === 'usertwo') {
       finalUserData = generateUserTwoData();
     } else {
-      // If the city is not london or dublin, we will throw an error
+      // If the username is not userone or usertwo, we will throw an error
       res.status(404).send('User not found');
     }
-    // We will return the weather data as JSON
+    // We will return the user data as JSON
     console.log(finalUserData);
     res.status(200).json(finalUserData);
   } catch (error) {
     // If there is an error, we will log it and send a 500 status code
-    res.status(500).send('Error in fetching weather data');
+    res.status(500).send('Error in fetching user data');
   }
 };

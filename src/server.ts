@@ -10,6 +10,8 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(cors());
+
+// create route /api/userdata
 app.use("/api/userdata", userDataRoute);
 
 // Start the express server
