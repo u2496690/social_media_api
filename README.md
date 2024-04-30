@@ -8,4 +8,9 @@ Run ```npm install algosdk``` to install the AlgoSDK\
 Run ```pipx install algokit``` to install AlgoKit
 
 Run ```npm run build``` to compile the typescript\
-Run ```npm run start``` to start the API server
+Run ```npm run start``` to start the API server\
+
+Run ```algokit localnet start``` to start a local testnet\
+Run ```algokit explore``` to access the Dappflow dashboard
+
+*Ensure all your ports vibilities are set to public*
